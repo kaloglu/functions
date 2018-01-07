@@ -14,5 +14,3 @@ exports.deleteQueue = db.ref("/delete_queue/{tweetId}")
 		var tweetId = event.data.key;
 		return db.ref('/deleted/${tweetId}').set(tweet)
 	})
-
-
