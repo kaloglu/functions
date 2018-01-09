@@ -1,0 +1,54 @@
+[debug] [2018-01-09T01:13:26.822Z] ----------------------------------------------------------------------
+[debug] [2018-01-09T01:13:26.827Z] Command:       /usr/local/bin/node /Users/kaloglu/.npm-global/bin/firebase deploy --only functions
+[debug] [2018-01-09T01:13:26.828Z] CLI Version:   3.16.0
+[debug] [2018-01-09T01:13:26.828Z] Platform:      darwin
+[debug] [2018-01-09T01:13:26.828Z] Node Version:  v9.2.0
+[debug] [2018-01-09T01:13:26.829Z] Time:          Tue Jan 09 2018 04:13:26 GMT+0300 (+03)
+[debug] [2018-01-09T01:13:26.829Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-01-09T01:13:26.848Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-09T01:13:26.849Z] > authorizing via signed-in user
+[debug] [2018-01-09T01:13:26.852Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-01-09T01:13:26.852Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/IXwAErA_hksHoBLfj8-etwKfmQwXtCX1XZzkneugGFU',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Tue Jan 09 2018 04:13:26 GMT+0300 (+03)
+[debug] [2018-01-09T01:13:27.141Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-09T01:13:27.157Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/androtweet-n  
+  
+ Tue Jan 09 2018 04:13:27 GMT+0300 (+03)
+[debug] [2018-01-09T01:13:27.981Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-09T01:13:27.982Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/androtweet-n/tokens  
+  
+ Tue Jan 09 2018 04:13:27 GMT+0300 (+03)
+[debug] [2018-01-09T01:13:29.034Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'androtweet-n'...
+[info] 
+[info] i  deploying functions
+[debug] [2018-01-09T01:13:29.852Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase serve --only functions",
+    "shell": "firebase experimental:functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "dependencies": {
+    "firebase-admin": "~5.4.2",
+    "firebase-functions": "^0.7.1"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2018-01-09T01:13:29.856Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/androtweet-n?view=CONSUMER_VIEW  
+  
+ Tue Jan 09 2018 04:13:29 GMT+0300 (+03)
+[debug] [2018-01-09T01:13:29.856Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/androtweet-n?view=CONSUMER_VIEW  
+  
+ Tue Jan 09 2018 04:13:29 GMT+0300 (+03)
