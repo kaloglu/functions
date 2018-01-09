@@ -61,3 +61,4 @@ typings/
 
 
 .idea/inspectionProfiles/
+/functions/node_modules/
