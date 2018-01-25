@@ -11,7 +11,6 @@ module.exports = {
 }
 
 function sendNotification(tokens, payload) {
-	console.log("sendNotification:[" + tokens + "]", payload);
 	return admin.messaging().sendToDevice(tokens, payload);
 }
 
@@ -25,7 +24,7 @@ function createNotification(uid, userId) {
 	let userKey = uid + "/" + userId;
 
 
-	const tokenRef = db.ref("/" + tables.deviceTokens + "/" + userKey);
+	const tokenRef = db.ref("/" + tables.device_tokens + "/" + userKey);
 	const profileRef = db.ref("/" + tables.profiles + "/" + userKey);
 
 
