@@ -1,47 +1,43 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-
+const tables = require('./firebase_tables.js');
 admin.initializeApp(functions.config().firebase)
 
 var db = admin.database();
 
 module.exports = {
-	addObjectToTable: function (table_name, key, object, onComplete) {
-		return addObjectToTable(table_name, key, object, onComplete);
-	},
-	addMessageToPushQueue: function (path, table_name, key, onComplete) {
-		return addMessageToPushQueue(path, table_name, key, onComplete);
-	},
-	sendNotification: function (tokens, payload) {
-		return sendNotification(tokens, payload);
-	}
-}
-
-function addObjectToTable(table_name, key, object, onComplete) {
-	const table_ref = db.ref("/" + table_name + "/" + key);
-	return table_ref.set(object, onComplete);
-}
-
-function addMessageToPushQueue(path, table_name, key, onComplete) {
-	const ref = db.ref(path);
-	ref.once("value").then(messagesData => {
-		const numChildren = messagesData.numChildren() - 1;
-		ref.child("count").set(numChildren).then(() => {
-			// if (numChildren <= 1) {
-			const payload = {
-				notification: {
-					title: "Deleting process completed!",
-					body: "Deleted all of your selected tweets"
-				},
-			};
-			return addObjectToTable(table_name, key, payload, onComplete);
-			// }
-		});
-
-	});
+	createNotification: createNotification,
+	sendNotification: sendNotification
 }
 
 function sendNotification(tokens, payload) {
-	console.log("tokens=>",tokens)
 	return admin.messaging().sendToDevice(tokens, payload);
+}
+
+function createNotification(uid, userId) {
+	const payload = {
+		notification: {
+			body: "Deleted all of your selected tweets"
+		},
+	};
+
+	let userKey = uid + "/" + userId;
+
+
+	const tokenRef = db.ref("/" + tables.device_tokens + "/" + userKey);
+	const profileRef = db.ref("/" + tables.profiles + "/" + userKey);
+
+
+	return tokenRef.once("value").then(tokenSnap => {
+		let token = tokenSnap.val();
+
+
+		return profileRef.once("value").then(userSnap => {
+			let user = userSnap.val();
+			payload.notification.title = user.name;
+			payload.notification.icon = user.profilePic;
+
+			return sendNotification(token, payload);
+		})
+	});
 }
