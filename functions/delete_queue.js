@@ -7,8 +7,12 @@ var db = functions.database;
 const triggeredRef = db.ref("/" + tables.delete_queue + "/{key}");
 
 exports.onDelete = triggeredRef.onDelete(event => {
-	var keys = event.params.key.split("__");
-	var userId = keys[0];
-	var uid = keys[1];
+	var eventData = event.data.previous.val()
+	var userId = eventData.userId;
+	var uid = eventData.uid;
+
+	console.log("event",eventData)
+	console.log("user",userId)
+	console.log("uid",uid)
 	return dbHelper.createNotification(uid, userId);
 });

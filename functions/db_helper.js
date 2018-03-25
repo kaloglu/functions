@@ -31,8 +31,12 @@ function createNotification(uid, userId) {
 	return tokenRef.once("value").then(tokenSnap => {
 		let token = tokenSnap.val();
 
+			console.log("token",tokenSnap)
+			console.log("userKey",userKey)
+			console.log("path","/" + tables.profiles + "/" + userKey)
 
 		return profileRef.once("value").then(userSnap => {
+			console.log(userSnap)
 			let user = userSnap.val();
 			payload.notification.title = user.name;
 			payload.notification.icon = user.profilePic;
