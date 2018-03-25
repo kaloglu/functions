@@ -63,3 +63,4 @@ typings/
 .idea/inspectionProfiles/
 /functions/node_modules/
 /node_modules
+/.idea/workspace.xml
